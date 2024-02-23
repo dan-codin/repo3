@@ -1,8 +1,38 @@
+/*Daniel Thompson*/
 #include <stdio.h>
+# include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	//check if low is greater that high
+	if(low > high){
+		return -1;
+	}
+
+	//a variable that stores the mid 
+	int mid = (low + high)/2;
+
+	// check if value is greater than the value at index mid and increment mid and assign it to low
+	if( value > numbers[mid]){
+		low = mid +1;
+		return search(numbers, low,high, value);
+	}
+
+	// check if value is less than the value at index mid and decrement mid and assign it to high
+	else if(value < numbers[mid]){
+		high = mid - 1;
+		return search(numbers, low, high, value);
+	}
+
+	// check if value is equal the value at index mid 
+	else if(value == numbers[mid]){
+			return mid;
+	}
+
+	// return if not found
+	else{
+		return -1;
+	}
 }
 
 void printArray(int numbers[], int sz)
